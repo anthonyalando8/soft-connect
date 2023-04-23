@@ -4,20 +4,39 @@
 		<meta charset="UTF-8" />
 
 		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+
+		<script src="https://kit.fontawesome.com/3695de9773.js" crossorigin="anonymous"></script>
 		<title>Soft Connect</title>
 		<style>
+   
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
    body{
     padding: 0;
     margin: 0;
+    font-family: 'Open Sans', sans-serif;
    }
-   #appName{
-    font-size: 28px;
+   main{
+    display: none;
+   }
+   .appName{
+    font-size: 24px;
     font-weight: bold;
     color: blue;
    }
-   .center{
-    display: flex; justify-content: center; align-items: center; 
+   .center-container{
+    position: absolute;
+    top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+   }
+   #appName.center-content{
     height: 100vh;
+    width: 100%;
+   }
+   .center-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
    }
    
 .spinner {
@@ -46,18 +65,72 @@
     transform: rotate(360deg);
   }
 }
-.login{
-	margin: 10px auto;
-}
 .frmLogin{
-	min-height: 400px;
-	background-color: whitesmoke;
-	border-radius: 5px;
+ background-color: whitesmoke;
+ border-radius: 5px;
+ flex-direction: column;
+ padding: 10px;
 }
-.stop-scrolling{
+.frmLogin img{
+ width: 100px;
+ height: 100px;
+}
+label {
+  display: block;
+  font-size: 16px;
+  color: #757575;
+  margin: 8px 0px;
+}
+
+input[type="email"],input[type="password"] {
+  display: block;
+  width: calc(100% - 18px);
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+input[type="submit"]{
+ padding: 10px;
+ margin: 10px 0px;
+ width: 100%;
+ border-radius: 5px;
+ border: none;
+ font-size: 16px;
+ background-color: blue;
+ color: white;
+}
+.loginMethod{
+ flex-direction: column;
+}
+.social{
+ display: flex;
+ flex-direction: row;
+ width: 100%;
+ justify-content: space-between;
+ padding: 10px;
+}
+
+.sop-scrolling{
  height: 100%;
  overflow: hidden;
 }
+.text-center{
+ text-align: center;
+}
+.social .fa-brands{
+ font-size: 36px;
+ color: rgb(11,11,69);
+}
+.button.transparent{
+ border: none;
+}
+#sign-up{
+ color: blue;
+ margin:10px 0;
+}
+  
+  
   
 		</style>
 	</head>
@@ -67,22 +140,75 @@
 			<div class="spinner" id="spinner"></div>
 		</div>
 		<main id="main">
-			<div class="login" id="frmLogin">
-				<form class="form frmLogin">
-					<img src="https://ik.imagekit.io/anthonyalando/Soft_Connect/user.png?updatedAt=1682239876486" alt="user icon">
-						<br />
-						<input type="text" name="userName" placeholder="Email">
-							<input type="password" name="password" placeholder="Password">
+			<div class="login center-container" id="frmLogin">
+				<div class="text-center">
+					<span class="appName">Soft Connect</span>
+					<br />
+
+					<h1>Login</h1>
+				</div>
+				<form class="form frmLogin center-content" action="/">
+					<img src="https://ik.imagekit.io/anthonyalando/Soft_Connect/user.png?updatedAt=1682239876486" alt="user icon" />
+
+					<br />
+
+					<label for="userName">User Name</label>
+					<input type="email" name="userName" id="userName" placeholder="Email" />
+
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" placeholder="Password" />
+
+					<input type="submit" name="submit" id="login" class="button" value="Login" />
+
+					<div class="loginMethod center-content">
+						<span>Continue with social account</span>
+						<div class="social">
+							<button class="button transparent">
+								<i class="fa-brands fa-google"></i>
+							</button>
+							<button class="button transparent">
+								<i class="fa-brands fa-facebook"></i>
+							</button>
+							<button class="button transparent">
+								<i class="fa-brands fa-linkedin"></i>
+							</button>
+						</div>
+						<button class="button transparent" id="sign-up">New User? Sign Up</button>
+					</div>
 				</form>
 			</div>
 			<script>
-				var frmLogin = document.getElementById("frmLogin");
-				if(window.innerWidth <= 320){
-					frmLogin.style.width = "95%";
-				}
-				else{
-					frmLogin.style.width = "320px";
-				}
+    var frmLogin = document.getElementById("frmLogin");
+    if(window.innerWidth <= 320){
+     frmLogin.style.width = "95%";
+    }
+    else{
+     frmLogin.style.width = "320px";
+    }
+   
+   function validate(){
+   	var btnLogin = document.getElementById("login");
+    var submitOk = true;
+    var email = document.getElementById("userName").value;
+    var password = document.getElementId("password").value;
+   if(email != "" && password != ""){
+    if(email.indexOf("@") == -1){
+     submitOk = false;
+     alert("Invalid email");
+    }
+   }
+   else{
+    alert("Invalid email or password");
+   }
+    return submitOk;
+   }
+   btnLogin.addEventListener("click", function(){
+   	if(validate){
+   		alert("Correct");
+   	}
+   });
+   
+   
 			</script>
 		</main>
 		<script>
@@ -99,22 +225,20 @@
    var appName = "Soft Connect";
 var body = document.getElementById("body");
 var splash = document.getElementById("splash");
-var content = `<div id='appName' class='center'>${appName}</div>`;
+var content = `<div id='appName' class='center-content center-container appName'>${appName}</div>`;
 body.classList.add("stop-scrolling");
 
 function homepage() {
   content = `<div id='home'>New Content</div>`;
   document.getElementById("splashScreen").style.display = "none";
+  document.getElementById("main").style.display = "block";
   body.classList.remove("stop-scrolling");
 }
 
 setTimeout(homepage, 2000);
 
 splash.innerHTML = content;
-
-
-   
-   
+  
 		</script>
 	</body>
 </html>
