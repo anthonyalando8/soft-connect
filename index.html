@@ -7,6 +7,9 @@
 
 		<script src="https://kit.fontawesome.com/3695de9773.js" crossorigin="anonymous"></script>
 		<script type="module" src="index.js"></script>
+		<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    	<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 		<link rel="stylesheet" href="index.css">
 		<title>Soft Connect</title>
 		<style>
@@ -202,6 +205,7 @@
 				max-width: 78.125%;
 				z-index: -1;
 				height: calc(100vh - 55px);
+				overflow: auto;
 				left: -100%;
 				transition: left 0.5s;
 			}
