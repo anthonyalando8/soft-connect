@@ -6,181 +6,214 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
 
 		<script src="https://kit.fontawesome.com/3695de9773.js" crossorigin="anonymous"></script>
-		<title>Soft Connect</title>
 		<script type="module" src="index.js"></script>
+		<link rel="stylesheet" href="index.css">
+		<title>Soft Connect</title>
 		<style>
    
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-   body{
-    padding: 0;
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
-   }
-   main{
-    display: none;
-   }
-   .appName{
-    font-size: 24px;
-    font-weight: bold;
-    color: #0228FD;
-   }
-   .center-container{
-    position: absolute;
-    top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-   }
-   #appName.center-content{
-    height: 100vh;
-    width: 100%;
-   }
-   .center-content{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-   }
-   .position-relative{
-   	position: relative;
-   }
-   .position-absolute{
-   	position: absolute;
-   }
-.spinner {
-  position: absolute;
-  top: 80%;
-  left: calc(50% - 25px);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
+			@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+			body{
+				padding: 0;
+				margin: 0;
+				font-family: 'Open Sans', sans-serif;
+			}
+			main{
+				display: none;
+			}
+			.appName{
+				font-size: 24px;
+				font-weight: bold;
+				color: #0228FD;
+			}
+			.center-container{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+			#appName.center-content{
+				height: 100vh;
+				width: 100%;
+			}
+			.center-content{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.position-relative{
+				position: relative;
+			}
+			.position-absolute{
+				position: absolute;
+			}
+			.spinner {
+				position: absolute;
+				top: 80%;
+				left: calc(50% - 25px);
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+			}
 
-.ray {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 30px;
-  border: 10px solid transparent;
-  border-top-color: black;
-  border-bottom-color: black;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-.login{
-	display: none;
-}
-.frmLogin{
- background-color: whitesmoke;
- border-radius: 5px;
- flex-direction: column;
- padding: 10px;
-}
-.frmLogin img{
- width: 100px;
- height: 100px;
-}
-label {
-  display: block;
-  font-size: 16px;
-  color: #757575;
-  margin: 8px 0px;
-}
+			.ray {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 0;
+				height: 30px;
+				border: 10px solid transparent;
+				border-top-color: black;
+				border-bottom-color: black;
+				border-radius: 50%;
+				animation: spin 1s linear infinite;
+			}
+			@keyframes spin {
+			to {
+				transform: rotate(360deg);
+			}
+			}
+			.logn{
+				display: none;
+			}
+			.frmLogin{
+				background-color: whitesmoke;
+				border-radius: 5px;
+				flex-direction: column;
+				padding: 10px;
+			}
+			.frmLogin img{
+				width: 100px;
+				height: 100px;
+			}
+			label {
+				display: block;
+				font-size: 16px;
+				color: #757575;
+				margin: 8px 0px;
+			}
 
-input[type="email"],input[type="password"] {
-  display: block;
-  width: calc(100% - 18px);
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-#btnLogin{
- padding: 10px;
- margin: 10px 0px;
- width: 100%;
- border-radius: 5px;
- border: none;
- font-size: 16px;
- background-color: #0228FD;
- color: white;
-}
-.loginMethod{
- flex-direction: column;
-}
-.social{
- display: flex;
- flex-direction: row;
- width: 100%;
- justify-content: space-between;
- padding: 10px;
-}
-.a{
-	text-decoration: none;
-	color: rgb(11,11,69);
-}
-.stop-scrolling{
- height: 100%;
- overflow: hidden;
-}
-.text-center{
- text-align: center;
-}
-.social .fa-brands{
- font-size: 36px;
- color: rgb(11,11,69);
-}
-.button.transparent{
- border: none;
-}
-#sign-up{
- color: #0228FD;
- margin:10px 0;
-}
-nav{
-	padding: 2.5px 10px;
-	display: flex;
-	justify-content: space-between;
-	height: 50px;
-	background-color: #0228FD;
-	box-shadow: 0px 2px 2px #1e1e1e;
-}
-nav button{
-	border: none;
-	background-color: transparent;
-}
-nav *{
-	color: white!important;
-	font-size: 18px;
-	font-weight: bold;
-}
-ul.nav-links{
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-	background-color: whitesmoke;
-	box-shadow: 0px 0px 1px #1e1e1e;
-	width: 78.125%;
-	z-index: -1;
-	height: calc(100vh - 55px);
-	left: -100%;
-	transition: left 0.5s;
-}
-ul.nav-links li{
-	padding: 10px;
-}
-button{
-	cursor: pointer;
-}
-.nav-active{
-	left: 0%!important;
-}
-  
-  
+			input[type="email"],input[type="password"] {
+				display: block;
+				width: calc(100% - 18px);
+				padding: 8px;
+				font-size: 16px;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+			}
+			#btnLogin{
+				padding: 10px;
+				margin: 10px 0px;
+				width: 100%;
+				border-radius: 5px;
+				border: none;
+				font-size: 16px;
+				background-color: #0228FD;
+				color: white;
+			}
+			.loginMethod{
+				flex-direction: column;
+			}
+			.social{
+				display: flex;
+				flex-direction: row;
+				width: 100%;
+				justify-content: space-between;
+				padding: 10px;
+			}
+			.a{
+				text-decoration: none;
+				color: rgb(11,11,69);
+			}
+			.a#btnJobs{
+				border: none;
+				padding: 0;
+				margin: 0;
+				background-color: transparent;
+				font-size: 16px;
+			}
+			#job{
+				display: flex;
+				justify-content: space-between;
+				cursor: pointer;
+			}
+			#job span{
+				transform: rotate(180deg);
+			}
+			.stop-scrolling{
+				height: 100%;
+				overflow: hidden;
+			}
+			.text-center{
+				text-align: center;
+			}
+			.social .fa-brands{
+				font-size: 36px;
+				color: rgb(11,11,69);
+			}
+			.button.transparent{
+				border: none;
+			}
+			#sign-up{
+				color: #0228FD;
+				margin:10px 0;
+			}
+			.navProfile{
+				flex-direction: column;
+				background-color: #0228FD;
+				width: 100%;
+				padding-top: 10px;
+				box-shadow: 0px 0px 1px #0228FD;
+			}
+			.navProfile img{
+				width: 80px;
+				height: 80px;
+				border-radius: 50%;
+				border: 2px solid rgb(248, 247, 247);
+			}
+			nav{
+				padding: 2.5px 10px;
+				display: flex;
+				justify-content: space-between;
+				height: 50px;
+				background-color: #0228FD;
+				box-shadow: 0px 2px 2px #1e1e1e;
+				z-index: 1;
+			}
+			.navProfile #navUserName{
+				color: white;
+				font-weight: bold;
+			}
+			nav button{
+				border: none;
+				background-color: transparent;
+			}
+			nav *{
+				color: white!important;
+				font-size: 18px;
+				font-weight: bold;
+			}
+			ul.nav-links{
+				list-style-type: none;
+				padding: 0;
+				margin: 0;
+				background-color: whitesmoke;
+				box-shadow: 0px 0px 1px #1e1e1e;
+				min-width: 250px;
+				max-width: 78.125%;
+				z-index: -1;
+				height: calc(100vh - 55px);
+				left: -100%;
+				transition: left 0.5s;
+			}
+			ul.nav-links li:not(ul.nav-links li:first-child){
+				padding: 10px;
+			}
+			button{
+				cursor: pointer;
+			}
+			.nav-active{
+				left: 0%!important;
+			}
 		</style>
 	</head>
 	<body id="body">
@@ -189,46 +222,54 @@ button{
 			<div class="spinner" id="spinner"></div>
 		</div>
 		<main id="main">
-			
-			<div class="homepage">
+			<div class="homepage" id="homepage">
 				<div class="navigation position-relative">
 					<nav class="nav-bar">
-						<a class="a center-content" src="index.html">
-							Soft Connect
-							</a>
-							<button class="button" id="btnShowNav"><i class="fa-solid fa-bars"></i></button>
-						</nav>
-						<ul class="nav-links position-absolute" id="nav-links">
-							<li>
-								<a class="a" href="index.html">Home</a>
-								</li>
-								<li>
-								<a class="a" href="">Profile</a>
-								</li>
-								<li>
-								<a class="a" href="">Applied jobs</a>
-								</li>
-								<li>
-								<a class="a" href="">Saved jobs</a>
-								</li>
-								<li>
-								<a class="a" href="">Help and support</a>
-								</li>
-								<li>
-								<a class="a" href="">Feedback</a>
-								</li>
-								<li>
-								<a class="a" href="">Setting</a>
-								</li>
-								<li>
-								<a class="a" href="">Logout</a>
-								</li>
-								<li>
-								<a class="a" href="">Exit</a>
-								</li>
-							</ul>
-					</div>
+						<a class="a center-content" src="index.html">Soft Connect</a>
+						<button class="button" id="btnShowNav"><i class="fa-solid fa-bars"></i></button>
+					</nav>
+					<ul class="nav-links position-absolute" id="nav-links">
+						<li id="li_navUserProfile">
+							<div class="navProfile center-content">
+								<img id="navUserImage" src="https://ik.imagekit.io/anthonyalando/Soft_Connect/user.png?updatedAt=1682239876486" alt="User image">
+								<p class="navUserName" id="navUserName">UserName</p>
+							</div>
+						</li>
+						<li><a class="a" href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+						
+						<li>
+							<div id="job">
+								<button class="button a" id="btnJobs"><i class="fa-solid fa-briefcase"></i> Jobs</button>
+								<span>^</span>
+							</div>
+						</li>
+						<li>
+						<a class="a" href=""><i class="fa-solid fa-shop"></i> Market place</a>
+						</li>
+						<li>
+						<a class="a" href=""><i class="fa-solid fa-bell"></i> Notifications</a>
+						</li>
+						<li>
+						<a class="a" href=""><i class="fa-solid fa-question"></i> Help and support</a>
+						</li>
+						<li>
+						<a class="a" href=""><i class="fa-sharp fa-solid fa-comments"></i> Feedback</a>
+						</li>
+						<li>
+						<a class="a" href=""><i class="fa-solid fa-gear"></i> Setting</a>
+						</li>
+						<li>
+						<a class="a" href=""><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+						</li>
+						<li>
+						<a class="a" href=""><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+						</li>
+						<li>
+						<a class="a" href=""><i class="fa-solid fa-circle-xmark"></i> Exit</a>
+						</li>
+					</ul>
 				</div>
+			</div>
 			
 			<!--Login form-->
 			<div class="login center-container" id="frmLogin">
@@ -254,13 +295,13 @@ button{
 					<div class="loginMethod center-content">
 						<span>Continue with social account</span>
 						<div class="social">
-							<button class="button transparent">
+							<button class="button transparent" id="btnGoogle">
 								<i class="fa-brands fa-google"></i>
 							</button>
-							<button class="button transparent">
+							<button class="button transparent" id="btnFaceBook">
 								<i class="fa-brands fa-facebook"></i>
 							</button>
-							<button class="button transparent">
+							<button class="button transparent" id="btnLinkedIn">
 								<i class="fa-brands fa-linkedin"></i>
 							</button>
 						</div>
@@ -269,81 +310,126 @@ button{
 				</form>
 			</div>
 			<script>
-			document.getElementById("btnShowNav").addEventListener("click", function(){
-					document.getElementById("nav-links").classList.toggle("nav-active");
+				document.querySelector('#job').addEventListener('click', function(){
+					document.querySelector("#job *").style.color = "blue";
+ 				});
+				document.getElementById("btnShowNav").addEventListener("click", function(){
+						document.getElementById("nav-links").classList.toggle("nav-active");
 				});
-    var frmLogin = document.getElementById("frmLogin");
-    if(window.innerWidth <= 320){
-     frmLogin.style.width = "95%";
-     
-    }
-    else{
-     frmLogin.style.width = "320px";
-     
-    }
-  if(window.innerHeight < 520){
-  	frmLogin.classList.remove("center-container");
-     frmLogin.style.margin ="auto";
-  }
-  else{
-  	frmLogin.classList.add("center-container");
-  } 
-  document.getElementById("btnLogin").addEventListener("click", function(){
-    var email = document.getElementById("userName").value;
-    var password = document.getElementById("password").value;
-    if(validate(email, password)){
-    	alert("Correct");
-    }else{
-    	alert("Invalid email or password");
-    }
-   });
-   
-   
-   function validate(EMAIL, PASSWORD){
-   	if(EMAIL != "" && PASSWORD != ""){
-    if(EMAIL.indexOf("@") == -1){
-    	return false;
-    }
-    if(PASSWORD.length < 6){
-    	return false;
-    }
-   }
-   else{
-   	return false;
-   }
-    return true;
-   }
-   
+				var frmLogin = document.getElementById("frmLogin");
+				if(window.innerWidth <= 320){
+					frmLogin.style.width = "95%";
+				}
+				else{
+					frmLogin.style.width = "320px";
+				}
+				if(window.innerHeight < 520){
+					frmLogin.classList.remove("center-container");
+					frmLogin.style.margin ="auto";
+				}
+				else{
+					frmLogin.classList.add("center-container");
+				} 
+				
+				
+			</script>
+			<script type="module">
+				import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+				import { getDatabase } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+				import { getStorage } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
+
+				document.getElementById("btnLogin").addEventListener("click", function(){
+				var email = document.getElementById("userName").value;
+				var password = document.getElementById("password").value;
+				if(validate(email, password)){
+					const auth = getAuth();
+					signInWithEmailAndPassword(auth, email, password)
+					.then((userCredential) => {
+						// Signed in 
+						const user = userCredential.user;
+						
+						alert("Login successfully");
+						// ...
+					})
+					.catch((error) => {
+						const errorCode = error.code;
+						const errorMessage = error.message;
+						alert(errorMessage);
+						// ..
+					});
+				}else{
+					alert("Invalid email or password");
+				}
+				});
+
+
+				document.getElementById('btnGoogle').addEventListener('click', function(){
+					const auth = getAuth();
+					const provider = new GoogleAuthProvider();
+					signInWithPopup(auth, provider)
+					.then((result) => {
+						// This gives you a Google Access Token. You can use it to access the Google API.
+						const credential = GoogleAuthProvider.credentialFromResult(result);
+						const token = credential.accessToken;
+						// The signed-in user info.
+						const user = result.user;
+						// IdP data available using getAdditionalUserInfo(result)
+						// ...
+					}).catch((error) => {
+						// Handle Errors here.
+						const errorCode = error.code;
+						const errorMessage = error.message;
+						// The email of the user's account used.
+						const email = error.customData.email;
+						// The AuthCredential type that was used.
+						const credential = GoogleAuthProvider.credentialFromError(error);
+						// ...
+					});
+				});
+				function validate(EMAIL, PASSWORD){
+				if(EMAIL != "" && PASSWORD != ""){
+					if(EMAIL.indexOf("@") == -1){
+					return false;
+					}
+					if(PASSWORD.length < 6){
+					return false;
+					}
+				}
+				else{
+					return false;
+				}
+					return true;
+				}
 			</script>
 		</main>
 		<script>
-   var spinner = document.getElementById("spinner");
-   var spinnerRays = "";
-   var spinnerDelay = -1;
-   for(let i = 1; i <= 3; i++){
-    if(i != 1){
-     spinnerDelay += 0.14285714285714285;
-    }
-    spinnerRays += `<div class='ray ray_${i}' style='animation-delay: ${spinnerDelay}s;'></div>`;
-   }
-   spinner.innerHTML = spinnerRays;
-   var appName = "Soft Connect";
-var body = document.getElementById("body");
-var splash = document.getElementById("splash");
-var content = `<div id='appName' class='center-content center-container appName'>${appName}</div>`;
-body.classList.add("stop-scrolling");
+			var spinner = document.getElementById("spinner");
+			var spinnerRays = "";
+			var spinnerDelay = -1;
+			for(let i = 1; i <= 3; i++){
+				if(i != 1){
+				spinnerDelay += 0.14285714285714285;
+				}
+				spinnerRays += `<div class='ray ray_${i}' style='animation-delay: ${spinnerDelay}s;'></div>`;
+			}
+			spinner.innerHTML = spinnerRays;
+			var appName = "Soft Connect";
+			var body = document.getElementById("body");
+			var splash = document.getElementById("splash");
+			var content = `<div id='appName' class='center-content center-container appName'>${appName}</div>`;
+			body.classList.add("stop-scrolling");
 
-function homepage() {
-  content = `<div id='home'>New Content</div>`;
-  document.getElementById("splashScreen").style.display = "none";
-  document.getElementById("main").style.display = "block";
-  body.classList.remove("stop-scrolling");
-}
+			function homepage() {
+			content = `<div id='home'>New Content</div>`;
+			document.getElementById("splashScreen").style.display = "none";
+			document.getElementById("main").style.display = "block";
+			body.classList.remove("stop-scrolling");
+			}
 
-setTimeout(homepage, 2000);
+			setTimeout(homepage, 2000);
 
-splash.innerHTML = content;
-  
+			splash.innerHTML = content;
+	
 		</script>
 	</body>
 </html>
