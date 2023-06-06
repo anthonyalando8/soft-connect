@@ -72,7 +72,7 @@
 				transform: rotate(360deg);
 			}
 			}
-			.login{
+			.logn{
 				display: none;
 			}
 			.frmLogin{
@@ -295,13 +295,13 @@
 					<div class="loginMethod center-content">
 						<span>Continue with social account</span>
 						<div class="social">
-							<button class="button transparent" id="btnGoogle">
+							<button class="button transparent" id="btnGoogle" type="button">
 								<i class="fa-brands fa-google"></i>
 							</button>
-							<button class="button transparent" id="btnFaceBook">
+							<button class="button transparent" id="btnFaceBook" type="button">
 								<i class="fa-brands fa-facebook"></i>
 							</button>
-							<button class="button transparent" id="btnLinkedIn">
+							<button class="button transparent" id="btnLinkedIn" type="button">
 								<i class="fa-brands fa-linkedin"></i>
 							</button>
 						</div>
@@ -334,7 +334,7 @@
 				
 			</script>
 			<script type="module">
-				import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+				import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,signInWithRedirect, signInWithPopup, GoogleAuthProvider} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
 				import { getDatabase } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 				import { getStorage } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
 
@@ -386,6 +386,7 @@
 						// ...
 					});
 				});
+				
 				function validate(EMAIL, PASSWORD){
 				if(EMAIL != "" && PASSWORD != ""){
 					if(EMAIL.indexOf("@") == -1){
