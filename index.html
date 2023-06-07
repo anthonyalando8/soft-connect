@@ -201,7 +201,7 @@
 					if(user){
 						const uid = user.uid;
 						document.getElementById('navUserName').innerHTML = user.displayName;
-						document.getElementById('navUserImage').src = user.photoURL;
+						document.getElementById('navUserImage').setAttribute('src', user.photoURL);
 					}else{
 						window.location.href = 'login.html';
 					}
