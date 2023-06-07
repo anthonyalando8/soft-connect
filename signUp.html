@@ -91,11 +91,11 @@
                         userSoftSkills: ""
                     });
                     
-                    window.location.href = 'login.html';
+                    window.location.href = 'index.html';
                     }).catch((error) => {
                     // An error occurred
                     // ...
-                    alert('Profile update incomplete');
+                    alert('Profile update incomplete')
                     });
                     
                     // ...
@@ -129,6 +129,18 @@
                 return false;
             }
             return true;
+        }
+        document.onreadystatechange = function(){
+        if(document.readyState !== "complete"){
+            document.querySelector("body").style.visibility = "hidden";
+            document.querySelector("#spinner").style.visibility = "visible";
+            //disableScrolling();
+        }
+        else{
+            document.querySelector("#spinner").style.display = "none";
+            document.querySelector("body").style.visibility = "visible";
+            //enableScrolling();
+        }
         }
     </script>
 </body>
