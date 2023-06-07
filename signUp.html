@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="index.js" type="module"></script>
+    <link rel="stylesheet" href="index.css">
+    <title>Soft connect | Sign Up</title>
+    <style>
+        #frmSignUp{
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="spinner center-container" id="spinner"></div>
+        <div class="sign-up-form-container center-container" id="formAcc">
+            <div class="text-center">
+                <span class="appName">Soft Connect</span>
+                <br />
+
+                <h3>Sign Up</h3>
+            </div>
+            <form class="form center-content" id="frmSignUp" method="post" action="/">
+                <label for="txtEmail">Email</label>
+                <input type="email" id="txtEmail" name="txtEmail" required>
+                <label for="txtName">Name</label>
+                <input type="text" id="txtName" name="txtName" required>
+                <label for="txtPasswordA">Password</label>
+                <input type="password" id="txtPasswordA" name="txtPasswordA" required>
+                <label for="txtPasswordB">Repeat password</label>
+                <input type="password" id="txtPasswordB" name="txtPasswordB" required>
+
+                <button class="button btn-bg-blue" type="button" name="btnSignUp" id="btnSignUp">Sign Up</button>
+                <button class="button transparent btnLink" type="button" name="btnLoginLink" id="btnLoginLink" onclick="document.location = 'index.html#frmLogin'">Have an account? Sign in</button>
+
+            </form>
+        </div>
+
+    </main>
+    <script>
+        document.onreadystatechange = function(){
+        if(document.readyState !== "complete"){
+            document.querySelector("body").style.visibility = "hidden";
+            document.querySelector("#spinner").style.visibility = "visible";
+            //disableScrolling();
+        }
+        else{
+            document.querySelector("#spinner").style.display = "none";
+            document.querySelector("body").style.visibility = "visible";
+            //enableScrolling();
+        }
+        }
+    </script>
+    <script type="module">
+        import { getAuth, createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+        
+        document.getElementById('btnSignUp').addEventListener('click', function(){
+            var userName = document.getElementById('txtName').value;
+            var userEmail = document.getElementById('txtEmail').value;
+            var userPassA = document.getElementById('txtPasswordA').value;
+            var userPassB = document.getElementById('txtPasswordB').value;
+        
+
+            if(validate(userEmail, userName, userPassA, userPassB)){
+                const auth = getAuth();
+                createUserWithEmailAndPassword(auth, userEmail, userPassB)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    
+                    window.location.href = 'index.html';
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(errorMessage);
+                    // ..
+                });
+            }
+        });
+        
+        function validate(EMAIL, NAME, PASSA, PASSB){
+            if(EMAIL != "", NAME != "", PASSA != "", PASSB != ""){
+                if(EMAIL.indexOf('@') == -1){
+                    alert("Invalid email");
+                    return false;
+                }
+                if(PASSB != PASSA){
+                    alert('Password not match');
+                    return false;
+                }else{
+                    if(PASSB.length < 6){
+                        alert("Weak password");
+                        return false;
+                    }
+                }
+            }else{
+                alert('All fields required');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

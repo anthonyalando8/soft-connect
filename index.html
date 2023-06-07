@@ -7,112 +7,31 @@
 
 		<script src="https://kit.fontawesome.com/3695de9773.js" crossorigin="anonymous"></script>
 		<script type="module" src="index.js"></script>
-		<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    	<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+		
 		<link rel="stylesheet" href="index.css">
 		<title>Soft Connect</title>
 		<style>
    
-			@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-			body{
-				padding: 0;
-				margin: 0;
-				font-family: 'Open Sans', sans-serif;
-			}
+			
 			main{
 				display: none;
 			}
-			.appName{
-				font-size: 24px;
-				font-weight: bold;
-				color: #0228FD;
-			}
-			.center-container{
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-			}
+			
 			#appName.center-content{
 				height: 100vh;
 				width: 100%;
 			}
-			.center-content{
-				display: flex;
-				align-items: center;
-				justify-content: center;
-			}
-			.position-relative{
-				position: relative;
-			}
-			.position-absolute{
-				position: absolute;
-			}
-			.spinner {
-				position: absolute;
-				top: 80%;
-				left: calc(50% - 25px);
-				width: 50px;
-				height: 50px;
-				border-radius: 50%;
-			}
-
-			.ray {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 0;
-				height: 30px;
-				border: 10px solid transparent;
-				border-top-color: black;
-				border-bottom-color: black;
-				border-radius: 50%;
-				animation: spin 1s linear infinite;
-			}
-			@keyframes spin {
-			to {
-				transform: rotate(360deg);
-			}
-			}
+			
 			.login{
 				display: none;
 			}
-			.frmLogin{
-				background-color: whitesmoke;
-				border-radius: 5px;
-				flex-direction: column;
-				padding: 10px;
-			}
+			
 			.frmLogin img{
 				width: 100px;
 				height: 100px;
 			}
-			label {
-				display: block;
-				font-size: 16px;
-				color: #757575;
-				margin: 8px 0px;
-			}
-
-			input[type="email"],input[type="password"] {
-				display: block;
-				width: calc(100% - 18px);
-				padding: 8px;
-				font-size: 16px;
-				border: 1px solid #ddd;
-				border-radius: 5px;
-			}
-			#btnLogin{
-				padding: 10px;
-				margin: 10px 0px;
-				width: 100%;
-				border-radius: 5px;
-				border: none;
-				font-size: 16px;
-				background-color: #0228FD;
-				color: white;
-			}
+			
+			
 			.loginMethod{
 				flex-direction: column;
 			}
@@ -127,7 +46,7 @@
 				text-decoration: none;
 				color: rgb(11,11,69);
 			}
-			.a#btnJobs{
+			.a.button{
 				border: none;
 				padding: 0;
 				margin: 0;
@@ -146,20 +65,12 @@
 				height: 100%;
 				overflow: hidden;
 			}
-			.text-center{
-				text-align: center;
-			}
+		
 			.social .fa-brands{
 				font-size: 36px;
 				color: rgb(11,11,69);
 			}
-			.button.transparent{
-				border: none;
-			}
-			#sign-up{
-				color: #0228FD;
-				margin:10px 0;
-			}
+			
 			.navProfile{
 				flex-direction: column;
 				background-color: #0228FD;
@@ -217,9 +128,7 @@
 				width: 20px;
 				
 			}
-			button{
-				cursor: pointer;
-			}
+			
 			.nav-active{
 				left: 0%!important;
 			}
@@ -228,7 +137,7 @@
 	<body id="body">
 		<div id="splashScreen">
 			<div id="splash"></div>
-			<div class="spinner" id="spinner"></div>
+			<div class="spinner" style="top: 80%;" id="spinner"></div>
 		</div>
 		<main id="main">
 			<div class="homepage" id="homepage">
@@ -268,20 +177,20 @@
 						<a class="a" href=""><i class="fa-solid fa-gear"></i> Setting</a>
 						</li>
 						<li>
-						<a class="a" href=""><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+							<button class="button a" id="navBtnLogin"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
 						</li>
 						<li>
-						<a class="a" href=""><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+							<button class="button a" id="btnLogout"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
 						</li>
 						<li>
-						<a class="a" href=""><i class="fa-solid fa-circle-xmark"></i> Exit</a>
+							<button class="button a" id="btnExit"><i class="fa-solid fa-circle-xmark"></i> Exit</button>
 						</li>
 					</ul>
 				</div>
 			</div>
 			
 			<!--Login form-->
-			<div class="login center-container" id="frmLogin">
+			<div class="login center-container" id="formAcc">
 				<div class="text-center">
 					<span class="appName">Soft Connect</span>
 					<br />
@@ -299,7 +208,7 @@
 					<label for="password">Password</label>
 					<input type="password" name="password" id="password" placeholder="Password" />
 
-					<button class="button" type="button" name="btnLogin" id="btnLogin">Login</button>
+					<button class="button btn-bg-blue" type="button" name="btnLogin" id="btnLogin">Login</button>
 
 					<div class="loginMethod center-content">
 						<span>Continue with social account</span>
@@ -314,7 +223,7 @@
 								<i class="fa-brands fa-linkedin"></i>
 							</button>
 						</div>
-						<button type="button" class="button transparent" name="sign-up" id="sign-up">New User? Sign Up</button>
+						<button type="button" class="button transparent btnLink" name="sign-up" id="sign-up" onclick="document.location = 'signUp.html'">New User? Sign Up</button>
 					</div>
 				</form>
 			</div>
@@ -325,25 +234,11 @@
 				document.getElementById("btnShowNav").addEventListener("click", function(){
 						document.getElementById("nav-links").classList.toggle("nav-active");
 				});
-				var frmLogin = document.getElementById("frmLogin");
-				if(window.innerWidth <= 320){
-					frmLogin.style.width = "95%";
-				}
-				else{
-					frmLogin.style.width = "320px";
-				}
-				if(window.innerHeight < 520){
-					frmLogin.classList.remove("center-container");
-					frmLogin.style.margin ="auto";
-				}
-				else{
-					frmLogin.classList.add("center-container");
-				} 
-				
 				
 			</script>
+
 			<script type="module">
-				import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,signInWithRedirect, signInWithPopup, GoogleAuthProvider} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+				import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
 				import { getDatabase } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 				import { getStorage } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
 
@@ -357,7 +252,6 @@
 						// Signed in 
 						const user = userCredential.user;
 						
-						alert("Login successfully");
 						// ...
 					})
 					.catch((error) => {
@@ -371,6 +265,14 @@
 				}
 				});
 
+				document.getElementById('btnLogout').addEventListener('click', function(){
+					const auth = getAuth();
+					signOut(auth).then(() => {
+					// Sign-out successful.
+					}).catch((error) => {
+					// An error happened.
+					});
+				});
 
 				document.getElementById('btnGoogle').addEventListener('click', function(){
 					const auth = getAuth();
@@ -396,6 +298,18 @@
 					});
 				});
 				
+
+				//on load
+				const auth = getAuth();
+				onAuthStateChanged(auth, (user) =>{
+					if(user){
+						const uid = user.uid;
+						document.getElementById('formAcc').style.display = 'none';
+					}else{
+						document.getElementById('formAcc').style.display = 'block';
+					}
+				});
+
 				function validate(EMAIL, PASSWORD){
 				if(EMAIL != "" && PASSWORD != ""){
 					if(EMAIL.indexOf("@") == -1){
@@ -413,16 +327,7 @@
 			</script>
 		</main>
 		<script>
-			var spinner = document.getElementById("spinner");
-			var spinnerRays = "";
-			var spinnerDelay = -1;
-			for(let i = 1; i <= 3; i++){
-				if(i != 1){
-				spinnerDelay += 0.14285714285714285;
-				}
-				spinnerRays += `<div class='ray ray_${i}' style='animation-delay: ${spinnerDelay}s;'></div>`;
-			}
-			spinner.innerHTML = spinnerRays;
+			
 			var appName = "Soft Connect";
 			var body = document.getElementById("body");
 			var splash = document.getElementById("splash");
@@ -430,7 +335,6 @@
 			body.classList.add("stop-scrolling");
 
 			function homepage() {
-			content = `<div id='home'>New Content</div>`;
 			document.getElementById("splashScreen").style.display = "none";
 			document.getElementById("main").style.display = "block";
 			body.classList.remove("stop-scrolling");

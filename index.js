@@ -24,5 +24,39 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
+var formAcc = document.getElementById("formAcc");
+if(window.innerWidth <= 450){
+  formAcc.style.width = "95%";
+}
+else{
+  formAcc.style.width = "450px";
+}
+if(window.innerHeight < 520){
+  formAcc.classList.remove("center-container");
+  formAcc.style.margin ="auto";
+}
+else{
+  formAcc.classList.add("center-container");
+} 
 
 
+//stop scrolling
+function disableScrolling(){
+  document.querySelector('body').classList.add('stop-scrolling');
+}
+//enable scrolling
+function enableScrolling(){
+  document.querySelector('body').classList.remove('stop-scrolling');
+}
+//loading animation
+
+var spinner = document.getElementById("spinner");
+var spinnerRays = "";
+var spinnerDelay = -1;
+for(let i = 1; i <= 3; i++){
+  if(i != 1){
+  spinnerDelay += 0.14285714285714285;
+  }
+  spinnerRays += `<div class='ray ray_${i}' style='animation-delay: ${spinnerDelay}s;'></div>`;
+}
+spinner.innerHTML = spinnerRays;
