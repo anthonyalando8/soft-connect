@@ -200,6 +200,7 @@
 				onAuthStateChanged(auth, (user) =>{
 					if(user){
 						const uid = user.uid;
+					}else{
 						window.location.href = 'login.html';
 					}
 				});
