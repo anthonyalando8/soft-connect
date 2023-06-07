@@ -200,6 +200,7 @@
 				onAuthStateChanged(auth, (user) =>{
 					if(user){
 						const uid = user.uid;
+						document.getElementById('navUserName').innerHTML = user.displayName;
 					}else{
 						window.location.href = 'login.html';
 					}

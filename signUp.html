@@ -41,22 +41,11 @@
         </div>
 
     </main>
-    <script>
-        document.onreadystatechange = function(){
-        if(document.readyState !== "complete"){
-            document.querySelector("body").style.visibility = "hidden";
-            document.querySelector("#spinner").style.visibility = "visible";
-            //disableScrolling();
-        }
-        else{
-            document.querySelector("#spinner").style.display = "none";
-            document.querySelector("body").style.visibility = "visible";
-            //enableScrolling();
-        }
-        }
-    </script>
+
     <script type="module">
-        import { getAuth, createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+        import { getAuth,updateProfile , createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+        import { getDatabase, ref, set, onValue, update } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+
         
         document.getElementById('btnSignUp').addEventListener('click', function(){
             var userName = document.getElementById('txtName').value;
@@ -71,8 +60,44 @@
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
+
+                    updateProfile(auth.currentUser, {
+                    displayName: userName, 
+                    photoURL: "https://ik.imagekit.io/anthonyalando/My_Portfolio/anthony-round.png?updatedAt=1679495758645"
+                    }).then(() => {
+                    // Profile updated!
+                    // ...
+                    const userId = user.uid;
+                    const db = getDatabase();
+
+                    set(ref(db, 'UsersInfo/' + userId), {
+                        imageUri : "N/A",
+                        userCourse : "",
+                        userEduGPA : "",
+                        userEduInstitution : "",
+                        userEducationLevel: "",
+                        userEmail: "",
+                        userEmployHistory: "",
+                        userGender: "N/A",
+                        userHardSkills: "",
+                        userID: userId,
+                        userJobLocations: "",
+                        userLanguage: "English ",
+                        userName: userName,
+                        userNationality: "",
+                        userPhone: "",
+                        userPreferJob: "",
+                        userSalary: "",
+                        userSoftSkills: ""
+                    });
                     
                     window.location.href = 'login.html';
+                    }).catch((error) => {
+                    // An error occurred
+                    // ...
+                    alert('Profile update incomplete');
+                    });
+                    
                     // ...
                 })
                 .catch((error) => {
