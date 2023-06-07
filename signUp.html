@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="index.js" type="module"></script>
+    <script type="module" src="form_acc.js"></script>
     <link rel="stylesheet" href="index.css">
     <title>Soft connect | Sign Up</title>
     <style>
@@ -34,7 +35,7 @@
                 <input type="password" id="txtPasswordB" name="txtPasswordB" required>
 
                 <button class="button btn-bg-blue" type="button" name="btnSignUp" id="btnSignUp">Sign Up</button>
-                <button class="button transparent btnLink" type="button" name="btnLoginLink" id="btnLoginLink" onclick="document.location = 'index.html#frmLogin'">Have an account? Sign in</button>
+                <button class="button transparent btnLink" type="button" name="btnLoginLink" id="btnLoginLink" onclick="document.location = 'login.html'">Have an account? Sign in</button>
 
             </form>
         </div>
@@ -71,7 +72,7 @@
                     // Signed in 
                     const user = userCredential.user;
                     
-                    window.location.href = 'index.html';
+                    window.location.href = 'login.html';
                     // ...
                 })
                 .catch((error) => {

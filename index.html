@@ -22,26 +22,7 @@
 				width: 100%;
 			}
 			
-			.login{
-				display: none;
-			}
 			
-			.frmLogin img{
-				width: 100px;
-				height: 100px;
-			}
-			
-			
-			.loginMethod{
-				flex-direction: column;
-			}
-			.social{
-				display: flex;
-				flex-direction: row;
-				width: 100%;
-				justify-content: space-between;
-				padding: 10px;
-			}
 			.a{
 				text-decoration: none;
 				color: rgb(11,11,69);
@@ -66,10 +47,6 @@
 				overflow: hidden;
 			}
 		
-			.social .fa-brands{
-				font-size: 36px;
-				color: rgb(11,11,69);
-			}
 			
 			.navProfile{
 				flex-direction: column;
@@ -189,44 +166,6 @@
 				</div>
 			</div>
 			
-			<!--Login form-->
-			<div class="login center-container" id="formAcc">
-				<div class="text-center">
-					<span class="appName">Soft Connect</span>
-					<br />
-
-					<h3>Login</h3>
-				</div>
-				<form class="form frmLogin center-content" method="post" action="/">
-					<img src="https://ik.imagekit.io/anthonyalando/Soft_Connect/user.png?updatedAt=1682239876486" alt="user icon" />
-
-					<br />
-
-					<label for="userName">User Name</label>
-					<input type="email" name="userName" id="userName" placeholder="Email" />
-
-					<label for="password">Password</label>
-					<input type="password" name="password" id="password" placeholder="Password" />
-
-					<button class="button btn-bg-blue" type="button" name="btnLogin" id="btnLogin">Login</button>
-
-					<div class="loginMethod center-content">
-						<span>Continue with social account</span>
-						<div class="social">
-							<button class="button transparent" id="btnGoogle" type="button">
-								<i class="fa-brands fa-google"></i>
-							</button>
-							<button class="button transparent" id="btnFaceBook" type="button">
-								<i class="fa-brands fa-facebook"></i>
-							</button>
-							<button class="button transparent" id="btnLinkedIn" type="button">
-								<i class="fa-brands fa-linkedin"></i>
-							</button>
-						</div>
-						<button type="button" class="button transparent btnLink" name="sign-up" id="sign-up" onclick="document.location = 'signUp.html'">New User? Sign Up</button>
-					</div>
-				</form>
-			</div>
 			<script>
 				document.querySelector('#job').addEventListener('click', function(){
 					document.querySelector("#job *").style.color = "blue";
@@ -238,96 +177,14 @@
 			</script>
 
 			<script type="module">
-				import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
-				import { getDatabase } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
-				import { getStorage } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
-
-				document.getElementById("btnLogin").addEventListener("click", function(){
-				var email = document.getElementById("userName").value;
-				var password = document.getElementById("password").value;
-				if(validate(email, password)){
-					const auth = getAuth();
-					signInWithEmailAndPassword(auth, email, password)
-					.then((userCredential) => {
-						// Signed in 
-						const user = userCredential.user;
-						
-						// ...
-					})
-					.catch((error) => {
-						const errorCode = error.code;
-						const errorMessage = error.message;
-						alert(errorMessage);
-						// ..
-					});
-				}else{
-					alert("Invalid email or password");
-				}
-				});
-
-				document.getElementById('btnLogout').addEventListener('click', function(){
-					const auth = getAuth();
-					signOut(auth).then(() => {
-					// Sign-out successful.
-					}).catch((error) => {
-					// An error happened.
-					});
-				});
-
-				document.getElementById('btnGoogle').addEventListener('click', function(){
-					const auth = getAuth();
-					const provider = new GoogleAuthProvider();
-					signInWithPopup(auth, provider)
-					.then((result) => {
-						// This gives you a Google Access Token. You can use it to access the Google API.
-						const credential = GoogleAuthProvider.credentialFromResult(result);
-						const token = credential.accessToken;
-						// The signed-in user info.
-						const user = result.user;
-						// IdP data available using getAdditionalUserInfo(result)
-						// ...
-					}).catch((error) => {
-						// Handle Errors here.
-						const errorCode = error.code;
-						const errorMessage = error.message;
-						// The email of the user's account used.
-						const email = error.customData.email;
-						// The AuthCredential type that was used.
-						const credential = GoogleAuthProvider.credentialFromError(error);
-						// ...
-					});
-				});
 				
-
-				//on load
-				const auth = getAuth();
-				onAuthStateChanged(auth, (user) =>{
-					if(user){
-						const uid = user.uid;
-						document.getElementById('formAcc').style.display = 'none';
-					}else{
-						document.getElementById('formAcc').style.display = 'block';
-					}
-				});
-
-				function validate(EMAIL, PASSWORD){
-				if(EMAIL != "" && PASSWORD != ""){
-					if(EMAIL.indexOf("@") == -1){
-					return false;
-					}
-					if(PASSWORD.length < 6){
-					return false;
-					}
-				}
-				else{
-					return false;
-				}
-					return true;
-				}
+				
 			</script>
-		</main>
-		<script>
 			
+		</main>
+		<script type="module">
+			import { getAuth, onAuthStateChanged, signOut} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+
 			var appName = "Soft Connect";
 			var body = document.getElementById("body");
 			var splash = document.getElementById("splash");
@@ -338,11 +195,29 @@
 			document.getElementById("splashScreen").style.display = "none";
 			document.getElementById("main").style.display = "block";
 			body.classList.remove("stop-scrolling");
+
+			const auth = getAuth();
+				onAuthStateChanged(auth, (user) =>{
+					if(user){
+						const uid = user.uid;
+						window.location.href = 'login.html';
+					}
+				});
 			}
 
 			setTimeout(homepage, 2000);
 
 			splash.innerHTML = content;
+
+			document.getElementById('btnLogout').addEventListener('click', function(){
+			const auth = getAuth();
+			signOut(auth).then(() => {
+			// Sign-out successful.
+			location.reload();
+			}).catch((error) => {
+			// An error happened.
+			});
+    		});
 	
 		</script>
 	</body>
