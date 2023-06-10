@@ -99,3 +99,12 @@ button{
     height: 100vh!important;
     overflow: hidden!important;
 }
+.password-strong{
+    border-color: green!important;
+}
+.password-medium{
+    border-color: orange!important;
+}
+.password-weak{
+    border-color: red!important;
+}

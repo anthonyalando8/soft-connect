@@ -12,6 +12,13 @@
         #frmSignUp{
             flex-direction: column;
         }
+        .label-info{
+            padding: 0;
+            margin: 0;
+            font-size: 12px;
+            width: 100%;
+            text-align: right!important;
+        }
     </style>
 </head>
 <body>
@@ -30,9 +37,11 @@
                 <label for="txtName">Name</label>
                 <input type="text" id="txtName" name="txtName" required>
                 <label for="txtPasswordA">Password</label>
-                <input type="password" id="txtPasswordA" name="txtPasswordA" required>
+                <input type="password" id="txtPasswordA" name="txtPasswordA" required oninput="checkPasswordStrength(this.value, 'txtPasswordA')">
+                <p id="passwordStrengthLabel" class="label-info"></p>
                 <label for="txtPasswordB">Repeat password</label>
-                <input type="password" id="txtPasswordB" name="txtPasswordB" required>
+                <input type="password" id="txtPasswordB" name="txtPasswordB" disabled required oninput="checkPasswordMatch(this.value, document.getElementById('txtPasswordA').value)">
+                <p id="passwordMatchLabel" class="label-info"></p>
 
                 <button class="button btn-bg-blue" type="button" name="btnSignUp" id="btnSignUp">Sign Up</button>
                 <button class="button transparent btnLink" type="button" name="btnLoginLink" id="btnLoginLink" onclick="document.location = 'login.html'">Have an account? Sign in</button>
@@ -89,17 +98,21 @@
                         userPreferJob: "",
                         userSalary: "",
                         userSoftSkills: ""
+                    }).then(() => {
+                        console.log('Data saved');
+                        window.location.href = 'index.html';
+                        window.history.pushState(null, null, window.location.href);
+                        window.onpopstate = function () {
+                            window.history.pushState(null, null, window.location.href);
+                        };
+                    }).catch((error)=>{
+                        console.log(error.message);
                     });
                     
-                    window.location.href = 'index.html';
-                    window.history.pushState(null, null, window.location.href);
-                    window.onpopstate = function () {
-                    window.history.pushState(null, null, window.location.href);
-                    };
                     }).catch((error) => {
                     // An error occurred
                     // ...
-                    alert('Profile update incomplete')
+                        alert('Profile update incomplete');
                     });
                     
                     // ...
@@ -146,6 +159,67 @@
             //enableScrolling();
         }
         }
+    </script>
+    <script>
+        document.getElementById('txtPasswordA').addEventListener('input',function(){
+            if(document.getElementById('txtPasswordA').value.length >= 1){
+                document.getElementById('txtPasswordB').removeAttribute('disabled');
+            }else{
+                document.getElementById('txtPasswordB').setAttribute('disabled', 'disabled');
+            }
+
+            checkPasswordMatch(document.getElementById('txtPasswordB').value, document.getElementById('txtPasswordA').value);
+            
+        });
+        function checkPasswordStrength(passwordValue, passFieldName){
+            const strongRegex = /^(?=.[a-z])(?=.[A-Z])(?=.[@$!%*?&])[A-Za-z\d@!%*?&]{10,}$/;
+            document.getElementById(passFieldName).classList.remove('password-weak', 'password-medium', 'password-strong');
+
+            if(strongRegex.test(passwordValue)){
+                document.getElementById(passFieldName).classList.add('password-strong');
+            }else{
+                const passStrength = (passwordValue.length / 10) * 100;
+                let strengthClass = '';
+                let passLabel = '';
+                let passLabelColor = '';
+
+                if(passStrength < 30){
+                    strengthClass = 'password-weak';
+                    passLabel = 'weak';
+                    passLabelColor = 'red';
+                }else if(passStrength > 30 && passStrength < 70){
+                    strengthClass = 'password-medium';
+                    passLabel = 'medium';
+                    passLabelColor = 'orange'
+                }else{
+                    strengthClass = 'password-strong';
+                    passLabel = 'strong';
+                    passLabelColor = 'green';
+                }
+                document.getElementById(passFieldName).classList.add(strengthClass);
+                document.getElementById('passwordStrengthLabel').textContent = `Password strength: ${passLabel}`;
+                document.getElementById('passwordStrengthLabel').style.color = passLabelColor;
+            }
+        }
+
+    function checkPasswordMatch(passwordValueB, passValueA){
+        let labelText = '';
+        let labelColor = '';
+        if(passValueA.length < 1){
+            labelText = '';
+        }else{
+            if(passwordValueB != passValueA){
+                labelText = 'Password not match';
+                labelColor = 'red';
+            }else{
+                labelText = 'Password match';
+                labelColor = 'green';
+            }
+        }
+        
+        document.getElementById('passwordMatchLabel').textContent = labelText;
+        document.getElementById('passwordMatchLabel').style.color = labelColor;
+    }
     </script>
 </body>
 </html>
