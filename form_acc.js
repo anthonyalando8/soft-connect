@@ -13,3 +13,4 @@ if(window.innerHeight < 520){
 else{
   formAcc.classList.add("center-container");
 }
+

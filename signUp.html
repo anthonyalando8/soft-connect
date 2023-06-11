@@ -21,7 +21,7 @@
         }
     </style>
 </head>
-<body>
+<body id="body">
     <main>
         <div class="spinner center-container" id="spinner"></div>
         <div class="sign-up-form-container center-container" id="formAcc">
@@ -32,6 +32,7 @@
                 <h3>Sign Up</h3>
             </div>
             <form class="form center-content" id="frmSignUp" method="post" action="/">
+                <input type="file" id="userProfileImg" accept="image/*">
                 <label for="txtEmail">Email</label>
                 <input type="email" id="txtEmail" name="txtEmail" required>
                 <label for="txtName">Name</label>
@@ -64,6 +65,7 @@
         
 
             if(validate(userEmail, userName, userPassA, userPassB)){
+                showProgressBar("Please wait....");
                 const auth = getAuth();
                 createUserWithEmailAndPassword(auth, userEmail, userPassB)
                 .then((userCredential) => {
@@ -100,24 +102,28 @@
                         userSoftSkills: ""
                     }).then(() => {
                         console.log('Data saved');
+                        removeDialog();
                         window.location.href = 'index.html';
                         window.history.pushState(null, null, window.location.href);
                         window.onpopstate = function () {
                             window.history.pushState(null, null, window.location.href);
                         };
                     }).catch((error)=>{
+                        removeDialog();
                         console.log(error.message);
                     });
                     
                     }).catch((error) => {
                     // An error occurred
                     // ...
+                    removeDialog();
                         alert('Profile update incomplete');
                     });
                     
                     // ...
                 })
                 .catch((error) => {
+                    removeDialog();
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     alert(errorMessage);

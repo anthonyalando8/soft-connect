@@ -7,6 +7,7 @@
     <script src="https://kit.fontawesome.com/3695de9773.js" crossorigin="anonymous"></script>
 	<script type="module" src="index.js"></script>
 	<script type="module" src="form_acc.js"></script>
+    <script src="s-c-sys.js"></script>
 	<link rel="stylesheet" href="index.css">
     <title>Soft connect | Login</title>
     <style>
@@ -32,7 +33,7 @@
 			
     </style>
 </head>
-<body>
+<body id="body">
     <main>
         <div class="spinner center-container" id="spinner"></div>
         <div class="login center-container" id="formAcc">
@@ -61,10 +62,10 @@
                         <button class="button transparent" id="btnGoogle" type="button">
                             <i class="fa-brands fa-google"></i>
                         </button>
-                        <button class="button transparent" id="btnFaceBook" type="button">
+                        <button class="button transparent" id="btnFaceBook" type="button" onclick="showAlert('Available in future', 'Alert')">
                             <i class="fa-brands fa-facebook"></i>
                         </button>
-                        <button class="button transparent" id="btnLinkedIn" type="button">
+                        <button class="button transparent" id="btnLinkedIn" type="button" onclick="showAlert('Future plan', 'Alert')">
                             <i class="fa-brands fa-linkedin"></i>
                         </button>
                     </div>
@@ -80,25 +81,29 @@
     import { getStorage } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
 
     document.getElementById("btnLogin").addEventListener("click", function(){
+        
     var email = document.getElementById("userName").value;
     var password = document.getElementById("password").value;
     if(validate(email, password)){
+        showProgressBar("Loading....");
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in 
+            removeDialog();
             const user = userCredential.user;
             window.location.href = 'index.html';
             // ...
         })
         .catch((error) => {
+            removeDialog();
             const errorCode = error.code;
             const errorMessage = error.message;
-            alert(errorMessage);
+            showAlert(errorMessage, "Error");
             // ..
         });
     }else{
-        alert("Invalid email or password");
+        showAlert("Invalid email or password", "Error");
     }
     });
 
@@ -148,12 +153,12 @@
     if(document.readyState !== "complete"){
         document.querySelector("body").style.visibility = "hidden";
         document.querySelector("#spinner").style.visibility = "visible";
-        //disableScrolling();
+        disableScrolling();
     }
     else{
         document.querySelector("#spinner").style.display = "none";
         document.querySelector("body").style.visibility = "visible";
-        //enableScrolling();
+        enableScrolling();
     }
     }
 </script>

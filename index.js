@@ -23,18 +23,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
- 
-
-
-//stop scrolling
-function disableScrolling(){
-  document.querySelector('body').classList.add('stop-scrolling');
-}
-//enable scrolling
-function enableScrolling(){
-  document.querySelector('body').classList.remove('stop-scrolling');
-}
-//loading animation
+ //loading animation
 
 var spinner = document.getElementById("spinner");
 var spinnerRays = "";
