@@ -1,7 +1,7 @@
-
 //function to create an alert dialog, used across all pages.
+var overLay;
 function showAlert(message, head) {
-    disableScrolling();
+    createOverlay();
     // Create the alert dialog elements dynamically
     var dialogContainer = document.createElement("div");
     dialogContainer.classList.add("alert-dialog");
@@ -22,7 +22,7 @@ function showAlert(message, head) {
     dialogButton.textContent = 'Ok';
     dialogButton.addEventListener('click', function(){
         dialogContainer.remove();
-        enableScrolling();
+        removeOverlay();
     });
 
   
@@ -58,9 +58,11 @@ function disableScrolling(){
 function enableScrolling(){
 document.querySelector('#body').classList.remove('stop-scrolling');
 }
-var dialogBox;
-function showProgressBar(text){
 
+var dialogBox;//progress bar cointainer
+function showProgressBar(text){
+    disableScrolling();
+    createOverlay();
     dialogBox = document.createElement("div");
     dialogBox.classList.add("progress-dialog");
     dialogBox.classList.add('center-container');
@@ -71,7 +73,7 @@ function showProgressBar(text){
     var progressBar = document.createElement('div');
     progressBar.classList.add('progress-bar');
     progressBar.classList.add('center-content');
-    progressBar.innerHTML = '<i class="fa-solid fa-spinner"></i>';
+    progressBar.innerHTML = '<i class="fa-solid fa-spinner fa-spin-pulse"></i>';
 
     var progressMessage = document.createElement("div");
     progressMessage.classList.add('center-content')
@@ -84,8 +86,25 @@ function showProgressBar(text){
     document.body.appendChild(dialogBox);
 
 }
+//close the progress dialog
 function removeDialog() {
     if (dialogBox) {
         dialogBox.parentNode.removeChild(dialogBox);
+        enableScrolling();
+    }
+    removeOverlay();
+}
+
+function createOverlay(){
+    overLay = document.createElement('div');
+    overLay.classList.add('overlay');
+
+    document.body.appendChild(overLay);
+    disableScrolling();
+}
+function removeOverlay(){
+    if(overLay){
+        overLay.parentNode.removeChild(overLay);
+        enableScrolling();
     }
 }

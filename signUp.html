@@ -36,13 +36,15 @@
                 <h3>Sign Up</h3>
             </div>
             <form class="form center-content" id="frmSignUp" method="post" action="/">
-                <input type="file" id="userProfileImg" accept="image/*">
+                <img id="imgUserSelected" class="userImage" src="https://ik.imagekit.io/anthonyalando/Soft_Connect/user.png?updatedAt=1682239876486" alt="selected image">
+                <label for="userProfileImg" id="profilePick" class="button">Select image</label>
+                <input type="file" id="userProfileImg" accept="image/*" class="hidden" onchange="uploadAndDisplayImage()">
                 <label for="txtEmail">Email</label>
                 <input type="email" id="txtEmail" name="txtEmail" required>
                 <label for="txtName">Name</label>
-                <input type="text" id="txtName" name="txtName" required>
+                <input type="text" id="txtName" name="txtName" autocomplete="name" required>
                 <label for="txtPasswordA">Password</label>
-                <input type="password" id="txtPasswordA" name="txtPasswordA" required oninput="checkPasswordStrength(this.value, 'txtPasswordA')">
+                <input type="password" id="txtPasswordA" name="txtPasswordA" autocomplete="new-password" required oninput="checkPasswordStrength(this.value, 'txtPasswordA')">
                 <p id="passwordStrengthLabel" class="label-info"></p>
                 <label for="txtPasswordB">Repeat password</label>
                 <input type="password" id="txtPasswordB" name="txtPasswordB" disabled required oninput="checkPasswordMatch(this.value, document.getElementById('txtPasswordA').value)">
@@ -55,7 +57,22 @@
         </div>
 
     </main>
-
+    <script>
+        function uploadAndDisplayImage() {
+            var fileInput = document.getElementById("userProfileImg");
+            var file = fileInput.files[0];
+            if (file) {
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                var imgElement = document.getElementById("imgUserSelected");
+                imgElement.setAttribute('src', event.target.result);
+            };
+            reader.readAsDataURL(file);
+            } else {
+            console.log("No file selected.");
+            }
+      }
+    </script>
     <script type="module">
         import { getAuth,updateProfile , createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
         import { getDatabase, ref, set, onValue, update } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
